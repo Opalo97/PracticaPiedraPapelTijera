@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-	    int opcionUsuario, opcionMaquina, partidas, victoria;
+	    int opcionUsuario, opcionMaquina, partidas, victoria, marcador1 = 0, marcador2 = 0;
         Scanner entrada = new Scanner(System.in);
 
         System.out.println("PIEDRA, PAPEL, TIJERA");
@@ -20,6 +20,11 @@ public class Main {
             opcionMaquina = generarOpcionMaquina();
 
             victoria = calcularVictoria(opcionUsuario, opcionMaquina);
+            if (victoria == 1) {
+                marcador1++;
+            } else if (victoria == 2) {
+                marcador2++;
+            }
 
             System.out.println();
 
@@ -29,6 +34,9 @@ public class Main {
             System.out.println("Intro para continuar...");
             entrada.nextLine();
         }
+
+        victoriaPartida("Usuario", marcador1, "Máquina", marcador2);
+
         System.out.println("=====¡PARTIDA TERMINADA!=====");
         entrada.close();
     }
@@ -183,5 +191,15 @@ public class Main {
             return "Tijera";
         }
     }
-    // TODO muestra quién ha ganado en general.
+    //  TODO muestra quién ha ganado en general.
+    private static void victoriaPartida(String nombre1, int marcador1, String nombre2, int marcador2){
+       if (marcador1 == marcador2) {
+           System.out.println("Se ha producido un empate.");
+       } else if (marcador1 > marcador2){
+           System.out.println("Ha ganado el Usuario.");
+        }else {
+           System.out.println("Ha ganado la Máquina.");
+       }
+
+    }
 }
